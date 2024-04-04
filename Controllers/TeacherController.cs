@@ -33,7 +33,30 @@ namespace project1_c_.Controllers
 
             return View(NewTeacher);
         }
+        //GET: /Teacher/New
+        public ActionResult New()
+        {
+            return View();
 
+        }
+
+        //GET: /Teacher/DeleteConfirm/{id}
+        public ActionResult DeleteConfirm(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher NewTeacher = controller.FindTeacher(id);
+
+
+            return View(NewTeacher);
+        }
+        //POST : /Teacher/Delete/{id}
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            controller.DeleteTeacher(id);
+            return RedirectToAction("List");
+        }
 
     }
 }
