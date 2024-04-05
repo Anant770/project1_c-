@@ -20,10 +20,6 @@
             var Salary = document.getElementById("Salary");
 
 
-            if (TeacherId.value === "") {
-                alert("Invalid teacher id.");
-                return false;
-            }
             if (TeacherFname.value === "") {
                 alert("Invalid teacher first name.");
                 return false;
@@ -57,16 +53,12 @@
         <input type="text" id="TeacherLname" name="TeacherLname" />
     </div>
     <div class="inputrow">
-        <label for="TeacherId">Id:</label>
-        <input type="number" id="TeacherId" name="TeacherId" />
-    </div>
-    <div class="inputrow">
         <label for="EmployeeNumber">Employee Number:</label>
         <input type="text" id="EmployeeNumber" name="EmployeeNumber" />
     </div>
     <div class="inputrow">
         <label for="hireDate">Hire date:</label>
-        <input type="datetime" id="HireDate" name="hireDate" />
+        <input type="date" id="HireDate" name="hireDate" />
     </div>
     <div class="inputrow">
         <label for="salary">Salary:</label>
@@ -74,6 +66,13 @@
     </div>
 
 
+    <!-- Error Messages Section -->
+    @if (ViewBag.Error != null)
+    {
+        <div class="inputrow">
+            <p class="error-message">@ViewBag.Error</p>
+        </div>
+    }
     <div class="inputrow">
         <input type="submit" value="Create Teacher" />
     </div>

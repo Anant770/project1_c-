@@ -12,7 +12,7 @@ namespace project1_c_.Controllers
     public class TeacherDataController : ApiController
     {
         //The database context class which allows us to access our MySQL Database.
-        private SchoolDbContext School= new SchoolDbContext();
+        private SchoolDbContext School = new SchoolDbContext();
 
         //This Controller Will access the teacher table of our school database.
         /// <summary>

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mysqlx.Datatypes;
 using project1_c_.Models;
 
 
@@ -38,6 +40,32 @@ namespace project1_c_.Controllers
         {
             return View();
 
+        }
+
+        //POST : /Teacher/Create
+        [HttpPost]
+        public ActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime? HireDate, decimal? Salary)
+        {
+            if (String.IsNullOrEmpty(TeacherFname) || String.IsNullOrEmpty(TeacherLname) || String.IsNullOrEmpty(EmployeeNumber) || HireDate == null || Salary == null)
+            {
+                ViewBag.Error = "All fields are required.";
+                return View("New");
+            }
+            //Identify that this method is running
+            //Identify the inputs provided from the form
+
+            Teacher NewTeacher = new Teacher();
+            NewTeacher.TeacherFname = TeacherFname;
+            NewTeacher.TeacherLname = TeacherLname;
+            NewTeacher.EmployeeNumber = EmployeeNumber;
+            NewTeacher.HireDate = (DateTime)HireDate;
+            NewTeacher.Salary = Salary ?? 0;
+
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.AddTeacher(NewTeacher);
+
+            return RedirectToAction("List");
         }
 
         //GET: /Teacher/DeleteConfirm/{id}
